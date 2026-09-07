@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    image: dattranht2/mern-backend:1.0
+    container_name: mern-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb+srv://cloud-lab:040825@cluster0.xxxx.mongodb.net/test?retryWrites=true&w=majority
+      - PORT=5000
+  frontend:
+    image: dattranht2/mern-frontend:1.0
+    container_name: mern-frontend
+    ports:
+      - "5173:5173"
+    command: npx vite --host 0.0.0.0
+    depends_on:
+      - backend
